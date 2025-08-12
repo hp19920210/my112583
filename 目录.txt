@@ -1,0 +1,36 @@
+/ (public_html)
+├── 📁 admin/
+│   ├── 📁 assets/
+│   │   └── 📄 admin-style.css
+│   ├── 📄 account.php
+│   ├── 📄 dashboard.php
+│   ├── 📄 delete.php
+│   ├── 📄 editor.php
+│   ├── 📄 index.php          (安全重定向)
+│   ├── 📄 login.php
+│   ├── 📄 logout.php
+│   ├── 📄 save.php
+│   └── 📄 update_account.php
+│
+├── 📁 assets/
+│   ├── 📁 icons/
+│   │   ├── 📄 icon-192x192.png
+│   │   └── 📄 icon-512x512.png
+│   ├── 📄 sites-style.css
+│   
+│
+├── 📁 core/
+│   ├── 📄 bootstrap.php
+│   ├── 📄 crypto.php
+│   ├── 📄 database.php
+│   └── 📄 functions.php
+│
+├── 📁 data/
+│   ├── 📄 .htaccess
+│   └── 📄 my_sites.sqlite    (数据库)
+│
+├── 📄 .gitignore             (版本控制忽略文件)
+├── 📄 config.php             (私人配置)
+├── 📄 index.php              (公共主页)
+├── 📄 manifest.json          (PWA 清单)
+└── 📄 sw.js                  (PWA Service Worker)

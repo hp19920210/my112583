@@ -1,0 +1,21 @@
+{
+    "name": "我的站点目录",
+    "short_name": "站点目录",
+    "description": "一个记录想法与创造的数字时间轴",
+    "start_url": "/index.php",
+    "display": "standalone",
+    "background_color": "#f9fafb",
+    "theme_color": "#2563eb",
+    "icons": [
+        {
+            "src": "assets/icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
