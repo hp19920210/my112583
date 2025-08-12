@@ -1,0 +1,2 @@
+# 禁止所有通过Web的直接访问
+Deny from all
