@@ -1,0 +1,429 @@
+/* === 设计语言核心：变量定义 === */
+:root {
+    --bg: #f9fafb;
+    --card-bg: #ffffff;
+    --muted: #6b7280;
+    --accent: linear-gradient(135deg, #2563eb 0%, #9333ea 100%);
+    --accent-solid: #2563eb;
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --text: #111827;
+    --muted-2: #374151;
+    --radius-lg: 18px;
+    --radius-md: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #111827;
+        --card-bg: #1f2937;
+        --muted: #9ca3af;
+        --accent-solid: #60a5fa;
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --text: #f9fafb;
+        --muted-2: #e5e7eb;
+    }
+}
+
+/* === 全局与跑马灯动画 === */
+@keyframes marquee-border {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 40px 20px;
+    line-height: 1.5;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+/* === 统一容器与页头 === */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dashboard-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 15px;
+}
+
+.dashboard-header h1 {
+    font-size: 28px;
+    margin: 0;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.toolbar {
+    margin-bottom: 24px;
+}
+
+/* === 跑马灯卡片 (统一外观) === */
+.marquee-card {
+    border-radius: var(--radius-lg);
+    position: relative;
+    background: var(--card-bg);
+    padding: 2px;
+    background-clip: padding-box;
+}
+
+.marquee-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(90deg, #2563eb, #9333ea, #2563eb);
+    background-size: 300% 300%;
+    animation: marquee-border 6s linear infinite;
+}
+
+.card-content {
+    padding: 0;
+    border-radius: var(--radius-lg);
+    background: var(--card-bg);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* === 表单页面专用容器 (登录、编辑、账户设置) === */
+.form-page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+}
+
+.form-page-wrapper .marquee-card {
+    width: 100%;
+    max-width: 700px;
+}
+
+/* 编辑页更宽 */
+.form-page-wrapper .marquee-card.login-card {
+    max-width: 500px;
+}
+
+/* 登录页稍窄 */
+.form-container {
+    padding: 30px 40px;
+}
+
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 24px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--glass-border);
+    background: var(--bg);
+    color: var(--text);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+}
+
+.form-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: var(--radius-md);
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
+
+.message.error {
+    background-color: #dc262620;
+    color: #dc2626;
+    border-color: #dc262650;
+}
+
+.message.success {
+    background-color: #16a34a20;
+    color: #16a34a;
+    border-color: #16a34a50;
+}
+
+/* === Dashboard 卡片布局 === */
+.site-cards-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+.card-main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background-color: rgba(128, 128, 128, 0.05);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.card-site-name {
+    font-size: 20px;
+    margin: 0;
+    font-weight: 700;
+}
+
+.card-section {
+    padding: 16px 24px;
+}
+
+.description-text {
+    margin: 0;
+    color: var(--muted-2);
+}
+
+.notes-section {
+    background-color: rgba(128, 128, 128, 0.05);
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.notes-section p {
+    margin: 0;
+    font-style: italic;
+}
+
+.card-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    padding: 16px 24px;
+}
+
+.info-item {
+    font-size: 14px;
+    color: var(--muted);
+    position: relative;
+}
+
+.info-item strong {
+    color: var(--text);
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.info-item span,
+.info-item a {
+    color: var(--muted-2);
+    word-wrap: break-word;
+}
+
+.info-item a {
+    color: var(--accent-solid);
+    text-decoration: none;
+}
+
+.info-item a:hover {
+    text-decoration: underline;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 16px 24px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* 复制图标 */
+.copy-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copy-icon {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--muted);
+    transition: transform 0.2s, color 0.2s;
+    padding: 4px;
+    border-radius: 50%;
+}
+
+.copy-icon:hover {
+    transform: scale(1.2);
+    color: var(--accent-solid);
+    background-color: rgba(128, 128, 128, 0.1);
+}
+
+/* === 状态徽章 === */
+.btn {
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 8px 15px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
+
+.status-online {
+    background-color: #16a34a;
+}
+
+.status-offline {
+    background-color: #dc2626;
+}
+
+.status-maintenance {
+    background-color: #ffc107;
+    color: #1f2937;
+}
+
+.empty-state {
+    padding: 40px;
+    border-radius: var(--radius-md);
+    text-align: center;
+    color: var(--muted);
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    grid-column: 1 / -1;
+}
+
+/* === 【完整】删除确认模态框 === */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-box {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.modal-title {
+    margin-top: 0;
+    font-size: 22px;
+}
+
+.modal-content {
+    margin: 20px 0;
+}
+
+.modal-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* === 【完整】分页 === */
+.pagination {
+    margin-top: 32px;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.pagination a,
+.pagination span {
+    padding: 8px 14px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--muted-2);
+    border: 1px solid var(--glass-border);
+    background: var(--card-bg);
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.pagination a:hover {
+    background: var(--glass-border);
+}
+
+.pagination a.current,
+.pagination span.current {
+    background: var(--accent);
+    color: white;
+    border-color: transparent;
+    font-weight: bold;
+}
+
+/* === 【完整】页脚 === */
+.footer-time {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--neon-color);
+    text-shadow: 0 0 5px var(--neon-color), 0 0 10px var(--neon-color), 0 0 20px var(--neon-color);
+}
